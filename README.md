@@ -6,7 +6,7 @@ Exploring the architecture of coding agents by rebuilding a Claude Code-style CL
 
 ## Learning Series
 
-A 9-part learning series covers the build on [ivanmagda.dev](https://ivanmagda.dev).
+A 9-part learning series covers the build on [ivanmagda.dev](https://ivanmagda.dev/series/swift-coding-agent/).
 
 [Start the series →](https://ivanmagda.dev/posts/s00-bootstrapping-the-project)
 

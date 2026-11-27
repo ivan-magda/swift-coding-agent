@@ -63,9 +63,9 @@ jobs:
           path: |
             .build
             ~/.cache/org.swift.swiftpm
-          key: ${{ runner.os }}-swift-6.2-spm-${{ hashFiles('Package.swift', 'Package.resolved') }}
+          key: ${{ runner.os }}-spm-${{ hashFiles('Package.swift', 'Package.resolved') }}
           restore-keys: |
-            ${{ runner.os }}-swift-6.2-spm-
+            ${{ runner.os }}-spm-
 
       - name: Build
         run: swift build

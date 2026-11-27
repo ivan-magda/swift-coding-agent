@@ -387,8 +387,14 @@ struct AutoCompactTests {
     #expect(!promptContent.contains("Focus on:"))
   }
 
-  @Test func saveTranscriptFailureReturnsOriginalMessages() async {
-    let compactor = ContextCompactor(transcriptDirectory: "/nonexistent/deeply/nested/path")
+  @Test func saveTranscriptFailureReturnsOriginalMessages() async throws {
+    // A directory nested under a regular file can't be created, even by root (as in CI containers).
+    let blockingFile = FileManager.default.temporaryDirectory
+      .appendingPathComponent(UUID().uuidString).path
+    try #require(FileManager.default.createFile(atPath: blockingFile, contents: Data()))
+    defer { try? FileManager.default.removeItem(atPath: blockingFile) }
+
+    let compactor = ContextCompactor(transcriptDirectory: "\(blockingFile)/transcripts")
     let messages = [Message.user("Hello"), Message.assistant("Hi there")]
 
     let result = await compactor.autoCompact(
